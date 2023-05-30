@@ -1,0 +1,43 @@
+#codeabbey template 1
+
+inp <- "6 7
+AOL KLHK IBYF AOLPY VDU KLHK AOL ZLJYLA VM OLHAOLY HSL.
+PU HUJPLUA WLYZPH AOLYL DHZ H RPUN HZ LHZF HZ SFPUN.
+NPCL FVBY YVVRZ IBA UVA KPSHYHT DOV DHUAZ AV SPCL MVYLCLY.
+AV BZ PU VSKLU ZAVYPLZ.
+HUK MVYNPCL BZ VBY KLIAZ HYL DVUKLYZ THUF AVSK.
+TLA H DVTHU HA AOL DLSS HUK ZV FVB AVV IYBABZ JHYAOHNL TBZA IL KLZAYVFLK."
+
+# inp<- "2 3
+# YHQL YLGL YLFL.
+# HYHQ BRX EUXWXV."
+
+in_vec <- (unlist(strsplit(inp, "\n")))[-1]
+k <- (unlist(strsplit(inp, "\n")))[1]
+k <- as.integer(unlist(strsplit(k, " ")))[2]
+rv <- rev(LETTERS)
+# j=2
+# i=2
+# s <- LETTERS
+ans <- sapply(1:length(in_vec), function(i) {
+  s <- (unlist(strsplit(in_vec[i],"")))
+  y <- sapply(1:length(s), function(j) {
+    if(s[j] %in% LETTERS){
+      a <- match(s[j],LETTERS)
+      # mm <- a - k
+      if(a-k <=0){
+        return(rv[abs(a-k-1)])
+      } else {
+        return(LETTERS[a-k])
+      }
+    } else {
+      return(s[j])
+    }
+    
+    
+  })
+
+return(paste(y, collapse = ""))
+})
+
+cat(ans)
